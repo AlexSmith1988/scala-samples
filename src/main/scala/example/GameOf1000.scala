@@ -3,7 +3,7 @@ package example
 import scala.io.StdIn
 import scala.util.Random
 
-object Example extends App {
+object GameOf1000 extends App {
   val answer = Random.nextInt(899) + 100
   println("I've chosen a number, please guess")
 
