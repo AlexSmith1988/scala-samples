@@ -4,16 +4,25 @@ import scala.io.StdIn
 import scala.util.Random
 
 object Example extends App {
+  val answer = Random.nextInt(899) + 100
   println("I've chosen a number, please guess")
-  println(Random.nextInt(899) + 100)
 
   var guessesLeft = 10
-  while (guessesLeft > 0) {
-    print(s"Take your guess ($guessesLeft left): ")
-    val guess = StdIn.readInt()
-    println(guess)
-    if (guess > 0)
+  var guessed = false
+  while (guessesLeft > 0 && !guessed) {
+    println(s"Take your guess ($guessesLeft left): ")
+    val guess = StdIn readInt()
+
+    if (guess > answer)
+      println("Too much")
+    else if (guess < answer)
+      println("Too little")
+    else
+      guessed = true
+    guessesLeft -= 1
   }
-
-
+  if (guessed)
+    println("You are right!")
+  else
+    println("You where unable to guess, better luck next time")
 }
