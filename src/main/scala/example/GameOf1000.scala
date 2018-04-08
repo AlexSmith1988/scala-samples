@@ -7,22 +7,20 @@ object GameOf1000 extends App {
   val answer = Random.nextInt(899) + 100
   println("I've chosen a number, please guess")
 
-  var guessesLeft = 10
   var guessed = false
-  while (guessesLeft > 0 && !guessed) {
+  for (guessesLeft <- 10 until 0) {
     println(s"Take your guess ($guessesLeft left): ")
-    val guess = StdIn readInt()
 
-    if (guess > answer)
-      println("Too much")
-    else if (guess < answer)
-      println("Too little")
-    else
-      guessed = true
-    guessesLeft -= 1
+    PartialFunction[Int, Unit] {
+      case guess if guess > answer => println("Too much")
+      case guess if guess < answer => println("Too much")
+      case _ => {
+        println("Congratulations, you've guessed")
+        guessed = true
+      }
+    }(StdIn readInt())
   }
-  if (guessed)
-    println("You are right!")
-  else
-    println("You where unable to guess, better luck next time")
+
+  if (!guessed)
+    println(s"You where unable to guess $answer, better luck next time")
 }
