@@ -1,4 +1,4 @@
-package example
+package sandbox
 
 import scala.io.StdIn
 import scala.util.Random
